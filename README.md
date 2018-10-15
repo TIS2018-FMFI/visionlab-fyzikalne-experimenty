@@ -10,3 +10,5 @@ Branch pre dokumentaciu, nemergovat!
 12.10.2018 - *Doplnený prepis rozhovoru so zadávateľom (Juro)*
 
 15.10.2018 - *Doplnený predbežný zoznam požiadaviek na iteráciu so zadávateľom (Juro)*
+
+15.10.2018 - *Doplnený predbežný zoznam požiadaviek (editovaný po stretnutí) na iteráciu so zadávateľom (Juro)*
