@@ -16,3 +16,5 @@ Branch pre dokumentaciu, nemergovat!
 15.10.2018 - *Doplnené nafotené dokumenty v InformacieOKyvadle-Vdoviak, ktoré poskytol pracovník didaktického oddelenia KVANTu a budú pomôckou pri počítaní fyzikálnych javov (Soňka)*
 
 16.10.2018 - *Doplnený predbežný zoznam požiadaviek (tretia verzia, finálna) na iteráciu so zadávateľom (Juro)*
+
+21.10.2018 - *Doplnená BETA verzia katalógu požiadaviek na review (Juro)*
