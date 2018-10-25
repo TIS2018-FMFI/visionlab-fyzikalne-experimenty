@@ -18,3 +18,5 @@ Branch pre dokumentaciu, nemergovat!
 16.10.2018 - *Doplnený predbežný zoznam požiadaviek (tretia verzia, finálna) na iteráciu so zadávateľom (Juro)*
 
 21.10.2018 - *Doplnená BETA verzia katalógu požiadaviek na review (Juro)*
+
+25.10.2018 - *Doplnená BETA verzia katalógu požiadaviek (upravená po stretnutí) na review (Juro)*
