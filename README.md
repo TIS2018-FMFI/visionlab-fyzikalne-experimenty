@@ -26,3 +26,5 @@ Branch pre dokumentaciu, nemergovat!
 4.11.2018 - *Doplnená FINAL verzia katalógu požiadaviek (zahrnutá požiadavka zadávateľa) (Soňka)*
 
 4.11.2018 - *Upravená FINAL verzia katalógu požiadaviek (upravené chybné odkazy v texte) (Juro)*
+
+4.11.2018 - *Vložený PDF súbor navrh_in_progress, ktorý bude vždy aktualizovaný po akejkoľvek doplnenej časti, resp. v prípade nutnosti opravy (Juro)*
