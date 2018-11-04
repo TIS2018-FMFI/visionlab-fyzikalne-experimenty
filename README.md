@@ -30,3 +30,5 @@ Branch pre dokumentaciu, nemergovat!
 4.11.2018 - *Vložený PDF súbor navrh_in_progress, ktorý bude vždy aktualizovaný po akejkoľvek doplnenej časti, resp. v prípade nutnosti opravy (Juro)*
 
 4.11.2018 - *Vložený dokument popisujúci časti knižnice openCV, ktoré budeme používať v aplikácii (Erik)*
+
+4.11.2018 - *Update PDF súboru navrh_in_progress, doplnené GUI od Soňky (Juro)*
