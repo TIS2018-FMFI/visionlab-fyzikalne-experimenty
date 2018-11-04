@@ -20,3 +20,9 @@ Branch pre dokumentaciu, nemergovat!
 21.10.2018 - *Doplnená BETA verzia katalógu požiadaviek na review (Juro)*
 
 25.10.2018 - *Doplnená BETA verzia katalógu požiadaviek (upravená po stretnutí) na review (Juro)*
+
+27.10.2018 - *Doplnená BETA verzia katalógu požiadaviek (upravená po pripomienkach p. Petroviča) na odoslanie zadávateľovi (Soňka)*
+
+4.11.2018 - *Doplnená FINAL verzia katalógu požiadaviek (zahrnutá požiadavka zadávateľa) (Soňka)*
+
+4.11.2018 - *Upravená FINAL verzia katalógu požiadaviek (upravené chybné odkazy v texte) (Juro)*
