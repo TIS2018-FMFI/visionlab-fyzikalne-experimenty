@@ -34,3 +34,7 @@ Branch pre dokumentaciu, nemergovat!
 4.11.2018 - *Update PDF súboru navrh_in_progress, doplnené GUI od Soňky (Juro)*
 
 12.11.2018 - *Update PDF súboru navrh_in_progress, doplnený prehľad technológií od Erika a edit state diagramu od Jožka (Juro)*
+
+17.11.2018 - *Update PDF súboru navrh_in_progress, doplnená knižnica libHaru a editované (nie všetky) formáty súborov (Juro)*
+
+
