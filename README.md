@@ -7,6 +7,8 @@ Branch pre dokumentaciu, nemergovat!
 
 (Dátum, Popis, Kto pridal)
 
+19.11.2018 - *Update PDF súboru navrh_in_progress, doplnený úvod, skratky (Juro), cieľové prostredie (Soňka), upravené UI (Soňka) (Juro)*
+
 17.11.2018 - *Update PDF súboru navrh_in_progress, doplnený beta class diagram a editovaný state diagram od Jožka (Juro)*
 
 17.11.2018 - *Update PDF súboru navrh_in_progress, doplnená knižnica libHaru a editované (nie všetky) formáty súborov (Juro)*
