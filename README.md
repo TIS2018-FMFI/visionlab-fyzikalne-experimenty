@@ -7,6 +7,8 @@ Branch pre dokumentaciu, nemergovat!
 
 (Dátum, Popis, Kto pridal)
 
+19.11.2018 - *Update PDF súboru navrh_in_progress, doplnený popis stavového diagramu od Jožka (Juro)*
+
 19.11.2018 - *Update PDF súboru navrh_in_progress, upravený Class Diagram, doplnený diagram uložených dát, ... (Juro)*
 
 19.11.2018 - *Update PDF súboru navrh_in_progress, doplnený úvod, skratky (Juro), cieľové prostredie (Soňka), upravené UI (Soňka) (Juro)*
