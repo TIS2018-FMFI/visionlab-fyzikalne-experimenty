@@ -7,6 +7,8 @@ Branch pre dokumentaciu, nemergovat!
 
 (Dátum, Popis, Kto pridal)
 
+22.11.2018 - *Update PDF súboru navrh_in_progress, doplnené formáty súborov CSV, TXT (návrhy) (Juro)*
+
 19.11.2018 - *Update PDF súboru navrh_in_progress, doplnený popis stavového diagramu od Jožka (Juro)*
 
 19.11.2018 - *Update PDF súboru navrh_in_progress, upravený Class Diagram, doplnený diagram uložených dát, ... (Juro)*
