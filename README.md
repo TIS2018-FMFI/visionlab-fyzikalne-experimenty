@@ -8,6 +8,8 @@ Branch pre dokumentaciu, nemergovat!
 (Dátum, Popis, Kto pridal)
 
 
+1.12.2018 - *Update PDF súboru navrh_in_progress, pridaná sekcia výpočtu veličín od Soňky a upravený triedny diagram (Juro)*
+
 26.11.2018 - *Update PDF súboru navrh_in_progress, update State Diagram od Jožka (Juro)*
 
 23.11.2018 - *Update PDF súboru navrh_in_progress, pridaný UML Component Diagram + popis (Juro)*
