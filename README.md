@@ -8,6 +8,8 @@ Branch pre dokumentaciu, nemergovat!
 (Dátum, Popis, Kto pridal)
 
 
+9.12.2018 - *Doplnené testovacie scenáre na review (Juro)*
+
 1.12.2018 - *Update PDF súboru navrh_in_progress, pridaná sekcia výpočtu veličín od Soňky a upravený triedny diagram (Juro)*
 
 26.11.2018 - *Update PDF súboru navrh_in_progress, update State Diagram od Jožka (Juro)*
