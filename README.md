@@ -8,6 +8,8 @@ Branch pre dokumentaciu, nemergovat!
 (Dátum, Popis, Kto pridal)
 
 
+6.1.2019 - *Upravené testovacie scenáre po pripomienkach @senkovicova1 (Juro)*
+
 10.12.2018 - *Doplnená konečná (?) verzia návrhu (Juro)*
 
 10.12.2018 - *Upravené testovacie scenáre (Juro)*
