@@ -12,7 +12,7 @@ using namespace std;
 const double gravitAcceleration = 9.81;
 const double radiansToDegrees = 57.2957795;
 
-DataSet::DataSet(double firstX, double firstY, double l, double w) {  //zavol· sa iba prv˝-kr·t
+DataSet::DataSet(double firstX, double firstY, double l, double w) {  //zavol√° sa iba prv√Ω-kr√°t
 	x = firstX;
 	y = firstY;
 	ropeLength = l;  //m
@@ -20,7 +20,7 @@ DataSet::DataSet(double firstX, double firstY, double l, double w) {  //zavol· s
 	setVariables();
 }
 
-void DataSet::getValues(double coordX, double coordY) {   //vol· sa opakovane
+void DataSet::getValues(double coordX, double coordY) {   //vol√° sa opakovane
 	x = coordX;
 	y = coordY;
 	checkMin();
@@ -122,7 +122,7 @@ void DataSet::exportData() {
 	double angularAcceleration = getAngularAcceleration();
 	double angularSpeed = getAngularSpeed();
 	//GraphView(currentDisplacement, speed, kineticEnergy, potentionalEnergy, period, isMaximalDisplacement,
-	//	acceleration, angularAcceleration, angularSpeed);   //konötruktor novej triedy
+	//	acceleration, angularAcceleration, angularSpeed);   //kon≈°truktor novej triedy
 }
 
 /*int main() {
