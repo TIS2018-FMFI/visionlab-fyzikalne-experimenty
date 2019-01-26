@@ -13,7 +13,7 @@ using namespace std;
 const double gravitAcceleration = 9.81;
 const double radiansToDegrees = 57.2957795;
 
-DataSet::DataSet(double firstX, double firstY, double l, double w, long long time) {  //zavol· sa iba prv˝-kr·t
+DataSet::DataSet(double firstX, double firstY, double l, double w, long long time) {  //zavol√° sa iba prv√Ω-kr√°t
 	x.push_back(firstX);
 	y.push_back(firstY);
 	times.push_back(time);
@@ -23,7 +23,7 @@ DataSet::DataSet(double firstX, double firstY, double l, double w, long long tim
 	calculateValues();
 }
 
-void DataSet::getValues(double coordX, double coordY, long long time) {   //vol· sa opakovane
+void DataSet::getValues(double coordX, double coordY, long long time) {   //vol√° sa opakovane
 	x.push_back(coordX);
 	y.push_back(coordY);
 	times.push_back(time);
@@ -129,9 +129,9 @@ double DataSet::getAngularSpeed() {
 
 void DataSet::exportGraphData() {
 	vector<double> currentCalculatedValues = calculateEachValue();
-	//GraphView(times.back(), currentCalculatedValues), //konötruktor novej triedy
+	//GraphView(times.back(), currentCalculatedValues), //kon≈°truktor novej triedy
 }
 
 void DataSet::exportRawData() {
-	RawDataExport(x, y, weight, ropeLength, times, values);                    //konötruktor novej triedy
+	RawDataExport(x, y, weight, ropeLength, times, values);                    //kon≈°truktor novej triedy
 }
