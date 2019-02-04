@@ -8,14 +8,15 @@ using namespace cv;
 using namespace chrono;
 
 void task(Camera* cam) {
-	cam->vc = VideoCapture(1);
+	cam->vc = VideoCapture(0);
+	//cam->vc.set(CV_CAP_PROP_FRAME_HEIGHT, 10);
+	//cam->vc.set(CV_CAP_PROP_FRAME_WIDTH, 10);
 	cam->LoadDefaultConfig();
 	int low_H = 284, low_S = 118, low_V = 53;
 	int high_H = 355, high_S = 253, high_V = 255;
 	int xy = 0, yy = 0, pocet = 0;
 	while (true) {
 		cam->vc >> cam->m;
-
 		if (cam->nx != -1) {
 			int y = (cam->ny * cam->m.rows) / cam->kky;
 			int x = (cam->nx * cam->m.cols) / cam->kkx;
@@ -38,12 +39,12 @@ void task(Camera* cam) {
 					k[0] = (360 + (60 * (l[1] - l[0])) / del) % 360;
 				}
 			}
-			low_S = k[1] - 25;
-			high_S = k[1] + 25;
-			low_V = k[2] - 25;
-			high_V = k[2] + 25;
-			low_H = k[0] - 45;
-			high_H = k[0] + 45;
+			low_S = k[1] - 50;
+			high_S = k[1] + 50;
+			low_V = k[2] - 50;
+			high_V = k[2] + 50;
+			low_H = k[0] - 90;
+			high_H = k[0] + 90;
 			if (low_H < 0) {
 				low_H += 360;
 			}
@@ -116,7 +117,9 @@ void task(Camera* cam) {
 		yy = 0;
 		xy = 0;
 		pocet = 0;
-		cam->win->Invalidate(FALSE);
+		if (cam->ide == 1) {
+			cam->win->Invalidate(FALSE);
+		}
 		char key = (char)cv::waitKey(20);
 		if (key == 'q' || key == 27)
 		{
@@ -213,4 +216,13 @@ void Camera::ImportConfigFile(const char* path) {
 
 		configFile.close();
 	}
+}
+
+void Camera::Save() {
+	vc >> m2;
+	imwrite("Obrazok.jpg", m2);
+}
+
+void Camera::StopStart() {
+	ide *= -1;
 }

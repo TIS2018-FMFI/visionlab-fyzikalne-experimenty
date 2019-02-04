@@ -12,10 +12,11 @@ public:
 	int cx = 0, cy = 0;
 	int nx = -1, ny = -1;
 	int kkx = -1, kky = -1;
+	int ide = 1;
 	long long initTime;
 	bool started = false;
 	DataSet* ds;
-	cv::Mat m;
+	cv::Mat m, m2;
 	CMFCApplication7Dlg* win;
 	HWND h;
 	cv::VideoCapture vc;
@@ -29,4 +30,6 @@ public:
 	int ExportConfigFile(bool default);
 	void LoadDefaultConfig();
 	void ImportConfigFile(const char* path);
+	void Save();
+	void StopStart();
 };

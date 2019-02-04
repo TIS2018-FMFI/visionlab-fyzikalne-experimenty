@@ -53,11 +53,11 @@ CMFCApplication7Dlg::CMFCApplication7Dlg(CWnd* pParent /*=nullptr*/)
 {
 	m_hIcon = AfxGetApp()->LoadIcon(IDR_MAINFRAME);
 
-	//CStringA filename = CStringA(_T("test.jpg"));
-	//m_imgMat = cv::imread(filename.GetBuffer(), cv::IMREAD_ANYCOLOR);
+	CStringA filename = CStringA(_T("test.jpg"));
+	m_imgMat = cv::imread(filename.GetBuffer(), cv::IMREAD_ANYCOLOR);
 
-	cv::VideoCapture cap(1);
-	cap >> m_imgMat;
+	//cv::VideoCapture cap(0);
+	//cap >> m_imgMat;
 }
 
 void CMFCApplication7Dlg::DoDataExchange(CDataExchange* pDX)
@@ -82,6 +82,7 @@ BEGIN_MESSAGE_MAP(CMFCApplication7Dlg, CDialogEx)
 	ON_BN_CLICKED(PlayStop_BUTTON, &CMFCApplication7Dlg::OnPlayStopClickedButton)
 	ON_BN_CLICKED(Min_BUTTON, &CMFCApplication7Dlg::OnMinClickedButton)
 	ON_STN_CLICKED(IDC_STATIC37, &CMFCApplication7Dlg::CameraClick)
+	ON_BN_CLICKED(IDC_CHECK1, &CMFCApplication7Dlg::OnBnClickedCheck1)
 END_MESSAGE_MAP()
 
 
@@ -272,7 +273,7 @@ void CMFCApplication7Dlg::OnPaint()
 		//Invalidate(FALSE);
 		CPaintDC dc(this);
 		dc.SetStretchBltMode(m_stretchBltMode);
-		m_drawer1.StretchImage(&dc, m_imgRect, m_imgMat);
+		m_drawer1.StretchImage(&dc, m_imgRect, cam->m);
 		CDialogEx::OnPaint();
 		//CWnd* pWndRect = NULL;
 		//pWndRect = GetDlgItem(IDC_STATIC37);
@@ -399,6 +400,7 @@ void CMFCApplication7Dlg::OnBnClickedSave()
 
 void CMFCApplication7Dlg::OnBnClickedRadio3()
 {
+	cam->Save();
 	// TODO: Add your control notification handler code here
 }
 
@@ -523,6 +525,12 @@ void CMFCApplication7Dlg::CameraClick()
 		POINT pt;
 		GetCursorPos(&pt);
 		ScreenToClient(&pt);
-		cam->SetHSV(pt.x - 26, pt.y - 151, 630-26, 573-151); //x=630, y=573
+		cam->SetHSV(pt.x - m_imgRect.left, pt.y - m_imgRect.top, m_imgRect.Width(), m_imgRect.Height()); //x=630, y=573
 	}
+}
+
+
+void CMFCApplication7Dlg::OnBnClickedCheck1()
+{
+	cam->StopStart();
 }
