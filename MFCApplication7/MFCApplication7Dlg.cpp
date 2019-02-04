@@ -56,7 +56,7 @@ CMFCApplication7Dlg::CMFCApplication7Dlg(CWnd* pParent /*=nullptr*/)
 	//CStringA filename = CStringA(_T("test.jpg"));
 	//m_imgMat = cv::imread(filename.GetBuffer(), cv::IMREAD_ANYCOLOR);
 
-	cv::VideoCapture cap(0);
+	cv::VideoCapture cap(1);
 	cap >> m_imgMat;
 }
 
@@ -110,11 +110,6 @@ BOOL CMFCApplication7Dlg::OnInitDialog()
 			pSysMenu->AppendMenu(MF_STRING, IDM_ABOUTBOX, strAboutMenu);
 		}
 	}
-
-	CString cs = CString("1");
-
-	SetDlgItemText(IDC_EDIT3, cs);
-	SetDlgItemText(IDC_EDIT4, cs);
 
 	// Set the icon for this dialog.  The framework does this automatically
 	//  when the application's main window is not a dialog
@@ -216,6 +211,17 @@ BOOL CMFCApplication7Dlg::OnInitDialog()
 	PEnset(hPE, PEP_bFIXEDFONTS, TRUE);
 
 	cam = new Camera(m_imgMat, this, hPE);
+
+	CString pend;
+	pend.Format(_T("%.5f"), cam->configuration.at("CAM_PEND_WEIGHT"));
+	CString rope;
+	rope.Format(_T("%.5f"), cam->configuration.at("CAM_ROPE_LENGTH"));
+	CString gravity;
+	gravity.Format(_T("%.5f"), cam->configuration.at("CAM_GRAVITY"));
+
+	SetDlgItemText(IDC_EDIT3, pend);
+	SetDlgItemText(IDC_EDIT4, rope);
+	SetDlgItemText(IDC_EDIT5, gravity);
 
 	return TRUE;  // return TRUE  unless you set the focus to a control
 }
