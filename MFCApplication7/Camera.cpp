@@ -8,12 +8,13 @@ using namespace cv;
 using namespace chrono;
 
 void task(Camera* cam) {
-	VideoCapture cap(0);
+	cam->vc = VideoCapture(1);
+	cam->LoadDefaultConfig();
 	int low_H = 284, low_S = 118, low_V = 53;
 	int high_H = 355, high_S = 253, high_V = 255;
 	int xy = 0, yy = 0, pocet = 0;
 	while (true) {
-		cap >> cam->m;
+		cam->vc >> cam->m;
 
 		if (cam->nx != -1) {
 			int y = (cam->ny * cam->m.rows) / cam->kky;
@@ -130,6 +131,7 @@ Camera::Camera(cv::Mat& frame, CMFCApplication7Dlg* window, HWND hPE) {
 	win = window;
 	h = hPE;
 	std::thread t1(task, this);
+	LoadDefaultConfig();
 	t1.detach();
 }
 
@@ -154,4 +156,61 @@ void Camera::SetHSV(int x, int y, int kx, int ky) {
 	ny = y;
 	kkx = kx;
 	kky = ky;
+}
+
+
+void Camera::LoadDefaultConfig() {
+	configuration["CAM_PEND_WEIGHT"] = 0.485;
+	configuration["CAM_ROPE_LENGTH"] = 0.895;
+	configuration["CAM_GRAVITY"] = 9.80665;
+	configuration["CAM_FRAME_HEIGHT"] = vc.get(CV_CAP_PROP_FRAME_HEIGHT);
+	configuration["CAM_FRAME_WIDTH"] = vc.get(CV_CAP_PROP_FRAME_WIDTH);
+	configuration["CAM_EXPO"] = vc.get(CV_CAP_PROP_EXPOSURE);
+	ExportConfigFile(true);
+}
+
+int Camera::ExportConfigFile(bool default) {
+	string filePath;
+	if (default == true) filePath = "config\\config_default.txt";
+	else filePath = "config\\config_export.txt";
+	ofstream configFile(filePath);
+	if (configFile.is_open())
+	{
+		map<string, double>::iterator it = configuration.begin();
+		for (pair<string, double> p : configuration) {
+			std::ostringstream strs;
+			strs << p.second;
+			std::string str = strs.str();
+			configFile << p.first + " " + str + "\n";
+		}
+		configFile.close();
+		return 0;
+	}
+	return -1;
+}
+
+template<typename T>
+std::vector<T> split(const std::string& line) {
+	std::istringstream is(line);
+	return std::vector<T>(std::istream_iterator<T>(is), std::istream_iterator<T>());
+}
+
+void Camera::ImportConfigFile(const char* path) {
+	string line;
+	ifstream configFile(path);
+	vector<string> tuple;
+	string paramName, value;
+
+	if (configFile.is_open())
+	{
+		while (getline(configFile, line))
+		{
+			tuple = split<string>(line);
+			paramName = tuple[0];
+			value = tuple[1];
+			configuration[paramName] = stod(value);
+		}
+
+		configFile.close();
+	}
 }

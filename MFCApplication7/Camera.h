@@ -18,10 +18,15 @@ public:
 	cv::Mat m;
 	CMFCApplication7Dlg* win;
 	HWND h;
+	cv::VideoCapture vc;
+	map<string, double> configuration;
 public:
 	Camera(cv::Mat&, CMFCApplication7Dlg*, HWND);
 	void Start(double l, double w);
 	void End();
 	void SetBot();
 	void SetHSV(int x, int y, int kx, int ky);
+	int ExportConfigFile(bool default);
+	void LoadDefaultConfig();
+	void ImportConfigFile(const char* path);
 };
