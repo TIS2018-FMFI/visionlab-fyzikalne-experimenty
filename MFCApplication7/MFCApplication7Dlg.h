@@ -63,4 +63,5 @@ public:
 	afx_msg void OnPlayStopClickedButton();
 	afx_msg void OnMinClickedButton();
 	afx_msg void CameraClick();
+	afx_msg void OnBnClickedCheck1();
 };
