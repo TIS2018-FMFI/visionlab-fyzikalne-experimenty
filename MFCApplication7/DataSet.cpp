@@ -14,7 +14,7 @@ using namespace std;
 const double gravitAcceleration = 9.81;
 const double radiansToDegrees = 57.2957795;
 
-DataSet::DataSet(double firstX, double firstY, double mX, double mY, double l, double w, long long time, HWND h) {  //zavol· sa iba prv˝-kr·t
+DataSet::DataSet(double firstX, double firstY, double mX, double mY, double l, double w, long long time, HWND h) {  //zavol√° sa iba prv√Ω-kr√°t
 	hPE = h;
 	minX = mX;
 	minY = mY;
@@ -51,7 +51,7 @@ DataSet::~DataSet() {
 	pixelConst = 0;
 }
 
-void DataSet::getValues(double coordX, double coordY, long long time) {   //vol· sa opakovane
+void DataSet::getValues(double coordX, double coordY, long long time) {   //vol√° sa opakovane
 	double xx = coordX * pixelConst;
 	double yy = coordY * pixelConst;
 	x.push_back(xx);
@@ -191,5 +191,5 @@ void DataSet::exportPDFData(char *imageName, char *graphName, const char *commen
 }
 
 void DataSet::exportRawData() {
-	RawDataExport(x, y, weight, ropeLength, times, values);                    //konötruktor novej triedy
+	RawDataExport(x, y, weight, ropeLength, times, values);                    //kon≈°truktor novej triedy
 }
