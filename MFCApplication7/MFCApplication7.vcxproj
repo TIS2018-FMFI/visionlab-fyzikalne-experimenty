@@ -193,6 +193,7 @@
     <ClInclude Include="DrawApproachStretchDIBits.h" />
     <ClInclude Include="MFCApplication7.h" />
     <ClInclude Include="MFCApplication7Dlg.h" />
+    <ClInclude Include="PDFExport.h" />
     <ClInclude Include="Pegrpapi.h" />
     <ClInclude Include="RawDataExport.h" />
     <ClInclude Include="Resource.h" />
@@ -205,6 +206,7 @@
     <ClCompile Include="DrawApproachStretchDIBits.cpp" />
     <ClCompile Include="MFCApplication7.cpp" />
     <ClCompile Include="MFCApplication7Dlg.cpp" />
+    <ClCompile Include="PDFExport.cpp" />
     <ClCompile Include="RawDataExport.cpp" />
     <ClCompile Include="stdafx.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>

@@ -101,10 +101,10 @@ void task(Camera* cam) {
 		if (pocet != 0) {
 			cam->cx = xy / pocet;
 			cam->cy = yy / pocet;
-			if (cam->cy > cam->by) {
+		/*	if (cam->cy > cam->by) {
 				cam->by = cam->cy;
 				cam->bx = cam->cx;
-			}
+			}*/
 		}
 		else {
 			cam->cx = 0;

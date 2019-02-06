@@ -168,12 +168,12 @@ bool DataSet::getIfMaximalDisplacement() {
 
 double DataSet::getAcceleration() {
 	double angle = getCurrentDisplacement();
-	return -gravitAcceleration * sin(angle);
+	return (-gravitAcceleration * sin(angle));
 }
 
 double DataSet::getAngularAcceleration() {
 	double angle = getCurrentDisplacement();
-	return ((-gravitAcceleration * sin(angle)) / ropeLength);
+	return (((-gravitAcceleration * sin(angle)) / ropeLength));
 }
 
 double DataSet::getAngularSpeed() {
