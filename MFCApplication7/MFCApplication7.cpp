@@ -5,6 +5,7 @@
 #include "stdafx.h"
 #include "MFCApplication7.h"
 #include "MFCApplication7Dlg.h"
+#include "Pegrpapi.h"
 
 #ifdef _DEBUG
 #define new DEBUG_NEW
@@ -27,6 +28,9 @@ CMFCApplication7App::CMFCApplication7App()
 
 	// TODO: add construction code here,
 	// Place all significant initialization in InitInstance
+}
+
+CMFCApplication7App::~CMFCApplication7App() {
 }
 
 

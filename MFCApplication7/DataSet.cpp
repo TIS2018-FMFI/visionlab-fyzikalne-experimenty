@@ -23,8 +23,8 @@ DataSet::DataSet(double firstX, double firstY, double mX, double mY, double l, d
 	ropeLength = l;  //m
 	weight = w;     //kg
 	pixelConst = getCoordFromPixel(firstX, firstY);
-//	minX *= pixelConst;
-//	minY *= pixelConst;
+	minX *= pixelConst;
+	minY *= pixelConst;
 	double xx = firstX * pixelConst;
 	double yy = firstY * pixelConst;
 	x.push_back(xx);
@@ -43,11 +43,11 @@ void DataSet::getValues(double coordX, double coordY, long long time) {   //volá
 }
 
 double DataSet::getCoordFromPixel(double valueX, double valueY) {
-	double h = valueY - minY;
-	double w = valueX - minX;
-	double gamma = (3.1415 - 2 * (atan((w / h)) * radiansToDegrees));
+	double h = abs(valueY - minY);
+	double w = abs(valueX - minX);
+	double gamma = (2 * (atan((h / w))));
 	double temp = pow(w, 2) + pow(h, 2);
-	return temp / (2 * pow(ropeLength, 2) * (1 - cos(gamma)));
+	return ((2 * pow(ropeLength, 2) * (1 - cos(gamma))) / temp) * 100;
 
 }
 
@@ -103,33 +103,32 @@ vector<double> DataSet::calculateEachValue() {
 }
 
 void DataSet::setVariables() {
-	double h = ropeLength - y.back();
+	double h = abs(y.back() - minY);
 	maxPotentionalEnergy = weight * gravitAcceleration * h;
 	startingAngle = getCurrentDisplacement();
 }
 
 double DataSet::getCurrentDisplacement() {
-	double deltaX = abs(minX - x.back());
+	double deltaX = minX - x.back();
 	double deltaY = abs(minY - y.back());
-	if (deltaY == 0) {
+	/*if (deltaY == 0) {
 		return 0;
-	}
-	return 180 - (2 * radiansToDegrees*(atan((deltaX / deltaY))));
+	}*/
+	return (2 *(atan((deltaY / deltaX))));
 }
 
 double DataSet::getSpeed() {
-	double h = ropeLength - y.back();    //h = distancePendulumToMin
 	double kineticEnergy = getKineticEnergy();
 	return sqrt(((2 * kineticEnergy) / weight));
 }
 
 double DataSet::getPotentionalEnergy() {
-	double h = y.back() - minY;
+	double h = abs(y.back() - minY);
 	double potentionalEnergy = weight * gravitAcceleration * h;
 	if (potentionalEnergy > maxPotentionalEnergy) {
 		maxPotentionalEnergy = potentionalEnergy;
 	}
-	return potentionalEnergy;
+	return  potentionalEnergy;
 }
 
 double DataSet::getKineticEnergy() {
@@ -174,5 +173,5 @@ void DataSet::exportGraphData() {
 }
 
 void DataSet::exportRawData() {
-	RawDataExport(x, y, weight, ropeLength, times, values);                    //konštruktor novej triedy
+	RawDataExport(x, y, weight, ropeLength, times, values, pixelConst);                    //konštruktor novej triedy
 }

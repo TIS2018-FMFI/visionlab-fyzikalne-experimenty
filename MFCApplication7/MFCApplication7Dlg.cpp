@@ -60,6 +60,13 @@ CMFCApplication7Dlg::CMFCApplication7Dlg(CWnd* pParent /*=nullptr*/)
 	//cap >> m_imgMat;
 }
 
+CMFCApplication7Dlg::~CMFCApplication7Dlg() {
+	if (hPE) {
+		PEdestroy(hPE);
+		hPE = 0;
+	}
+}
+
 void CMFCApplication7Dlg::DoDataExchange(CDataExchange* pDX)
 {
 	CDialogEx::DoDataExchange(pDX);
@@ -288,114 +295,20 @@ HCURSOR CMFCApplication7Dlg::OnQueryDragIcon()
 	return static_cast<HCURSOR>(m_hIcon);
 }
 
-boolean cameraOpen = false;
 
 void CMFCApplication7Dlg::OnBnClickedButton()
 {
-	if (cameraOpen) {
-		this->GetDlgItem(IDC_RADIO1)->ShowWindow(SW_HIDE);
-		this->GetDlgItem(IDC_RADIO2)->ShowWindow(SW_HIDE);
-		this->GetDlgItem(IDC_RADIO3)->ShowWindow(SW_HIDE);
-		this->GetDlgItem(IDC_RADIO4)->ShowWindow(SW_HIDE);
-		this->GetDlgItem(IDC_RADIO5)->ShowWindow(SW_HIDE);
-
-		this->GetDlgItem(IDC_EDIT1)->ShowWindow(SW_HIDE);
-		this->GetDlgItem(IDC_EDIT2)->ShowWindow(SW_HIDE);
-
-		this->GetDlgItem(IDC_BUTTON5)->ShowWindow(SW_HIDE);
-
-		this->GetDlgItem(IDC_SET1)->ShowWindow(SW_HIDE);
-
-		this->GetDlgItem(IDC_STATIC1)->ShowWindow(SW_HIDE);
-		this->GetDlgItem(IDC_STATIC2)->ShowWindow(SW_HIDE);
-		this->GetDlgItem(IDC_STATIC3)->ShowWindow(SW_HIDE);
-
-		cameraOpen = false;
-	}
-	else {
-		this->GetDlgItem(IDC_RADIO1)->ShowWindow(SW_SHOW);
-		this->GetDlgItem(IDC_RADIO2)->ShowWindow(SW_SHOW);
-		this->GetDlgItem(IDC_RADIO3)->ShowWindow(SW_SHOW);
-		this->GetDlgItem(IDC_RADIO4)->ShowWindow(SW_SHOW);
-		this->GetDlgItem(IDC_RADIO5)->ShowWindow(SW_SHOW);
-
-		this->GetDlgItem(IDC_EDIT1)->ShowWindow(SW_SHOW);
-		this->GetDlgItem(IDC_EDIT2)->ShowWindow(SW_SHOW);
-
-		this->GetDlgItem(IDC_BUTTON5)->ShowWindow(SW_SHOW);
-
-		this->GetDlgItem(IDC_SET1)->ShowWindow(SW_SHOW);
-
-		this->GetDlgItem(IDC_STATIC1)->ShowWindow(SW_SHOW);
-		this->GetDlgItem(IDC_STATIC2)->ShowWindow(SW_SHOW);
-		this->GetDlgItem(IDC_STATIC3)->ShowWindow(SW_SHOW);
-
-		cameraOpen = true;
-	}
 	
 }
 
-boolean graphOpen = false;
 void CMFCApplication7Dlg::OnBnClickedGraphSet()
 {
-	if (graphOpen) {
-		this->GetDlgItem(IDC_EDIT3)->ShowWindow(SW_HIDE);
-		this->GetDlgItem(IDC_EDIT4)->ShowWindow(SW_HIDE);
-		this->GetDlgItem(IDC_EDIT5)->ShowWindow(SW_HIDE);
-
-		this->GetDlgItem(IDC_BUTTON6)->ShowWindow(SW_HIDE);
-
-		this->GetDlgItem(IDC_SET2)->ShowWindow(SW_HIDE);
-
-		this->GetDlgItem(IDC_STATIC6)->ShowWindow(SW_HIDE);
-		this->GetDlgItem(IDC_STATIC7)->ShowWindow(SW_HIDE);
-		this->GetDlgItem(IDC_STATIC8)->ShowWindow(SW_HIDE);
-
-		graphOpen = false;
-	}
-	else {
-		this->GetDlgItem(IDC_EDIT3)->ShowWindow(SW_SHOW);
-		this->GetDlgItem(IDC_EDIT4)->ShowWindow(SW_SHOW);
-		this->GetDlgItem(IDC_EDIT5)->ShowWindow(SW_SHOW);
-
-		this->GetDlgItem(IDC_BUTTON6)->ShowWindow(SW_SHOW);
-
-		this->GetDlgItem(IDC_SET2)->ShowWindow(SW_SHOW);
-
-		this->GetDlgItem(IDC_STATIC6)->ShowWindow(SW_SHOW);
-		this->GetDlgItem(IDC_STATIC7)->ShowWindow(SW_SHOW);
-		this->GetDlgItem(IDC_STATIC8)->ShowWindow(SW_SHOW);
-
-		graphOpen = true;
-	}
 }
 
 
-boolean saveOpen = false;
 void CMFCApplication7Dlg::OnBnClickedSave()
 {
-	if (saveOpen) {
-		this->GetDlgItem(IDC_EDIT6)->ShowWindow(SW_HIDE);
 
-		this->GetDlgItem(IDC_BUTTON7)->ShowWindow(SW_HIDE);
-		this->GetDlgItem(IDC_BUTTON8)->ShowWindow(SW_HIDE);
-
-		this->GetDlgItem(IDC_STATIC4)->ShowWindow(SW_HIDE);
-		this->GetDlgItem(IDC_STATIC5)->ShowWindow(SW_HIDE);
-
-		saveOpen = false;
-	}
-	else {
-		this->GetDlgItem(IDC_EDIT6)->ShowWindow(SW_SHOW);
-
-		this->GetDlgItem(IDC_BUTTON7)->ShowWindow(SW_SHOW);
-		this->GetDlgItem(IDC_BUTTON8)->ShowWindow(SW_SHOW);
-
-		this->GetDlgItem(IDC_STATIC4)->ShowWindow(SW_SHOW);
-		this->GetDlgItem(IDC_STATIC5)->ShowWindow(SW_SHOW);
-
-		saveOpen = true;
-	}
 }
 
 void CMFCApplication7Dlg::OnBnClickedRadio3()
@@ -427,70 +340,24 @@ void CMFCApplication7Dlg::OnBnClickedOk()
 
 void CMFCApplication7Dlg::OnBnClickedHotovo1()
 {
-	this->GetDlgItem(IDC_RADIO1)->ShowWindow(SW_HIDE);
-	this->GetDlgItem(IDC_RADIO2)->ShowWindow(SW_HIDE);
-	this->GetDlgItem(IDC_RADIO3)->ShowWindow(SW_HIDE);
-	this->GetDlgItem(IDC_RADIO4)->ShowWindow(SW_HIDE);
-	this->GetDlgItem(IDC_RADIO5)->ShowWindow(SW_HIDE);
 
-	this->GetDlgItem(IDC_EDIT1)->ShowWindow(SW_HIDE);
-	this->GetDlgItem(IDC_EDIT2)->ShowWindow(SW_HIDE);
-
-	this->GetDlgItem(IDC_BUTTON5)->ShowWindow(SW_HIDE);
-
-	this->GetDlgItem(IDC_SET1)->ShowWindow(SW_HIDE);
-
-	this->GetDlgItem(IDC_STATIC1)->ShowWindow(SW_HIDE);
-	this->GetDlgItem(IDC_STATIC2)->ShowWindow(SW_HIDE);
-	this->GetDlgItem(IDC_STATIC3)->ShowWindow(SW_HIDE);
-
-	cameraOpen = false;
 }
 
 
 void CMFCApplication7Dlg::OnBnClickedHotovo2()
 {
-	this->GetDlgItem(IDC_EDIT3)->ShowWindow(SW_HIDE);
-	this->GetDlgItem(IDC_EDIT4)->ShowWindow(SW_HIDE);
-	this->GetDlgItem(IDC_EDIT5)->ShowWindow(SW_HIDE);
-
-	this->GetDlgItem(IDC_BUTTON6)->ShowWindow(SW_HIDE);
-
-	this->GetDlgItem(IDC_SET2)->ShowWindow(SW_HIDE);
-
-	this->GetDlgItem(IDC_STATIC6)->ShowWindow(SW_HIDE);
-	this->GetDlgItem(IDC_STATIC7)->ShowWindow(SW_HIDE);
-	this->GetDlgItem(IDC_STATIC8)->ShowWindow(SW_HIDE);
-
-	graphOpen = false;
 }
 
 
 void CMFCApplication7Dlg::OnBnClickedCSV()
 {
-	this->GetDlgItem(IDC_EDIT6)->ShowWindow(SW_HIDE);
-
-	this->GetDlgItem(IDC_BUTTON7)->ShowWindow(SW_HIDE);
-	this->GetDlgItem(IDC_BUTTON8)->ShowWindow(SW_HIDE);
-
-	this->GetDlgItem(IDC_STATIC4)->ShowWindow(SW_HIDE);
-	this->GetDlgItem(IDC_STATIC5)->ShowWindow(SW_HIDE);
-
-	saveOpen = false;
+	cam->ds->exportRawData();
 }
 
 
 void CMFCApplication7Dlg::OnBnClickedPDF()
 {
-	this->GetDlgItem(IDC_EDIT6)->ShowWindow(SW_HIDE);
 
-	this->GetDlgItem(IDC_BUTTON7)->ShowWindow(SW_HIDE);
-	this->GetDlgItem(IDC_BUTTON8)->ShowWindow(SW_HIDE);
-
-	this->GetDlgItem(IDC_STATIC4)->ShowWindow(SW_HIDE);
-	this->GetDlgItem(IDC_STATIC5)->ShowWindow(SW_HIDE);
-
-	saveOpen = false;
 }
 
 

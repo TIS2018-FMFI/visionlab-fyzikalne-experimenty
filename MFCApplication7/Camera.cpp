@@ -39,12 +39,12 @@ void task(Camera* cam) {
 					k[0] = (360 + (60 * (l[1] - l[0])) / del) % 360;
 				}
 			}
-			low_S = k[1] - 50;
-			high_S = k[1] + 50;
-			low_V = k[2] - 50;
-			high_V = k[2] + 50;
-			low_H = k[0] - 90;
-			high_H = k[0] + 90;
+			low_S = k[1] - 40;
+			high_S = k[1] + 40;
+			low_V = k[2] - 40;
+			high_V = k[2] + 40;
+			low_H = k[0] - 70;
+			high_H = k[0] + 70;
 			if (low_H < 0) {
 				low_H += 360;
 			}
@@ -163,8 +163,8 @@ void Camera::SetHSV(int x, int y, int kx, int ky) {
 
 
 void Camera::LoadDefaultConfig() {
-	configuration["CAM_PEND_WEIGHT"] = 0.485;
-	configuration["CAM_ROPE_LENGTH"] = 0.895;
+	configuration["CAM_PEND_WEIGHT"] = 0.063;
+	configuration["CAM_ROPE_LENGTH"] = 0.53;
 	configuration["CAM_GRAVITY"] = 9.80665;
 	configuration["CAM_FRAME_HEIGHT"] = vc.get(CV_CAP_PROP_FRAME_HEIGHT);
 	configuration["CAM_FRAME_WIDTH"] = vc.get(CV_CAP_PROP_FRAME_WIDTH);

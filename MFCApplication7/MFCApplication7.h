@@ -19,6 +19,7 @@ class CMFCApplication7App : public CWinApp
 {
 public:
 	CMFCApplication7App();
+	~CMFCApplication7App();
 
 // Overrides
 public:

@@ -9,13 +9,14 @@ using namespace std;
 #include "stdafx.h"
 #include "RawDataExport.h"
 
-RawDataExport::RawDataExport(vector<double> x, vector<double> y, double weight, double length, vector<long long> time, vector<double> values) {
+RawDataExport::RawDataExport(vector<double> x, vector<double> y, double weight, double length, vector<long long> time, vector<double> values, double a) {
 	xCoords = x;
 	yCoords = y;
 	pendulumWeight = weight;
 	ropeLength = length;
 	measuringTimes = time;
 	calculatedValues = values;
+	pixel = a;
 	createFile();
 }
 
@@ -34,6 +35,7 @@ bool RawDataExport::createFile() {
 	}
 	ofstream file;
 	file.open(fileName);
+	file << "*** pixelConst: " + to_string(pixel) + " ***\n";
 	file << "*** Dátum: "+ date + " ***\n";
 	file << "*** Konfigurácia kyvadla: ***\n";
 	file << "Váha:;" + to_string(pendulumWeight)  + ";Dåžka lanka:;" + to_string(ropeLength) +"\n";
