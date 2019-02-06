@@ -21,6 +21,7 @@ class DataSet {
 	HWND hPE;
 public:
 	DataSet(double firstX, double firstY, double mX, double mY, double l, double w, long long time, HWND h);
+	~DataSet();
 	void getValues(double coordX, double coordY, long long time);
 	double getCoordFromPixel(double valueX, double valueY);
 	void setVariables();
@@ -34,7 +35,7 @@ public:
 	double getPeriod();
 	double getFrequency();
 	bool getIfMaximalDisplacement();
-	void exportGraphData();
+	void exportPDFData(char *imageName, char *graphName, const char *comment);
 	void exportRawData();
 	void calculateValues();
 	vector<double> calculateEachValue();

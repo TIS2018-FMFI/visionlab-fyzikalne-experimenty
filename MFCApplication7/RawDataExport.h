@@ -14,7 +14,8 @@ class RawDataExport {
 	double ropeLength = 0;
 	double pixel = 0;
 public:
-	RawDataExport(vector<double> x, vector<double> y, double weight, double length, vector<long long> time, vector<double> values, double a);
+	RawDataExport(vector<double> x, vector<double> y, double weight, double length, vector<long long> time, vector<double> values);
+	~RawDataExport();
 	bool createFile();
 	bool fileExists(string &fileName);
 };

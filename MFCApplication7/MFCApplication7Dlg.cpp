@@ -357,7 +357,23 @@ void CMFCApplication7Dlg::OnBnClickedCSV()
 
 void CMFCApplication7Dlg::OnBnClickedPDF()
 {
+	POINT p;
+	p.x = 600;
+	p.y = 500;
 
+	LPWSTR strFull = L"graf.png";
+	char *graphName = "graf.png";
+	PEcopyjpegtofile(hPE, &p, strFull);
+
+	cam->Save();
+	char *imageName = "zaznam.jpg";
+
+	CString comment;
+	GetDlgItemText(IDC_EDIT6, comment);
+	CStringA help(comment);
+	const char *comChar = ((const char*)help);
+
+	cam->ds->exportPDFData(imageName, graphName, comChar);
 }
 
 
@@ -367,10 +383,10 @@ void CMFCApplication7Dlg::OnPlayStopClickedButton()
 		nahrava = true;
 		CString cs1;
 		GetDlgItemText(IDC_EDIT3, cs1);
-		float hmot = _ttof(cs1);
+		float hmot = (float) _ttof(cs1);
 		CString cs2;
 		GetDlgItemText(IDC_EDIT4, cs2);
-		float dlzk = _ttof(cs2);
+		float dlzk = (float) _ttof(cs2);
 		cam->Start(dlzk, hmot); //TODO: Nastavit tieto hodnoty na dlzku lana a vahu zavazia v metroch a kilogramoch
 	}
 	else {

@@ -138,6 +138,21 @@ Camera::Camera(cv::Mat& frame, CMFCApplication7Dlg* window, HWND hPE) {
 	t1.detach();
 }
 
+Camera::~Camera() {
+	bx = -1;
+	by = -1;
+	cx = 0;
+	cy = 0;
+	nx = -1;
+	ny = -1;
+	kkx = -1;
+	kky = -1;
+	ide = 1;
+	initTime = 0;
+	started = false;
+	ds = nullptr;
+}
+
 void Camera::Start(double l, double w) {
 	//double firstX, double firstY, double mX, double mY, double l, double w, long long time
 	initTime = duration_cast<milliseconds> (system_clock::now().time_since_epoch()).count();
@@ -220,7 +235,7 @@ void Camera::ImportConfigFile(const char* path) {
 
 void Camera::Save() {
 	vc >> m2;
-	imwrite("Obrazok.jpg", m2);
+	imwrite("zaznam.jpg", m2);
 }
 
 void Camera::StopStart() {

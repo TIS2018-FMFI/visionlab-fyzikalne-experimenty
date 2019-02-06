@@ -1,5 +1,3 @@
-#define _USE_MATH_DEFINES
-
 #include <math.h>
 #include <iostream>
 #include <cmath>
@@ -10,12 +8,13 @@ using namespace std;
 #include "stdafx.h"
 #include "DataSet.h"
 #include "RawDataExport.h"
+#include "PDFExport.h"
 #include "Pegrpapi.h"
 
 const double gravitAcceleration = 9.81;
 const double radiansToDegrees = 57.2957795;
 
-DataSet::DataSet(double firstX, double firstY, double mX, double mY, double l, double w, long long time, HWND h) {  //zavol· sa iba prv˝-kr·t
+DataSet::DataSet(double firstX, double firstY, double mX, double mY, double l, double w, long long time, HWND h) {  //zavol√° sa iba prv√Ω-kr√°t
 	hPE = h;
 	minX = mX;
 	minY = mY;
@@ -33,7 +32,26 @@ DataSet::DataSet(double firstX, double firstY, double mX, double mY, double l, d
 	calculateValues();
 }
 
-void DataSet::getValues(double coordX, double coordY, long long time) {   //vol· sa opakovane
+DataSet::~DataSet() {
+	x.clear();
+	x.shrink_to_fit();
+	y.clear();
+	y.shrink_to_fit();
+	times.clear();
+	times.shrink_to_fit();
+	values.clear();
+	values.shrink_to_fit();
+	minX = 0;
+	minY = 0;
+	ropeLength = 0;
+	weight = 0;
+	maxPotentionalEnergy = 0;
+	startingAngle = 0;
+	maxAngle = 0;
+	pixelConst = 0;
+}
+
+void DataSet::getValues(double coordX, double coordY, long long time) {   //vol√° sa opakovane
 	double xx = coordX * pixelConst;
 	double yy = coordY * pixelConst;
 	x.push_back(xx);
@@ -47,7 +65,7 @@ double DataSet::getCoordFromPixel(double valueX, double valueY) {
 	double w = abs(valueX - minX);
 	double gamma = (2 * (atan((h / w))));
 	double temp = pow(w, 2) + pow(h, 2);
-	return ((2 * pow(ropeLength, 2) * (1 - cos(gamma))) / temp) * 100;
+	return sqrt(((2 * pow(ropeLength, 2) * (1 - cos(gamma))) / temp));
 
 }
 
@@ -167,11 +185,11 @@ double DataSet::getAngularSpeed() {
 	return sqrt(temp);
 }
 
-void DataSet::exportGraphData() {
-	vector<double> currentCalculatedValues = calculateEachValue();
-	//GraphView(times.back(), currentCalculatedValues), //konötruktor novej triedy
+void DataSet::exportPDFData(char *imageName, char *graphName, const char *comment) {
+	char *help = (char*)comment;
+	PDFExport(values, graphName, imageName, weight, ropeLength, 1, help);
 }
 
 void DataSet::exportRawData() {
-	RawDataExport(x, y, weight, ropeLength, times, values, pixelConst);                    //konötruktor novej triedy
+	RawDataExport(x, y, weight, ropeLength, times, values);                    //kon≈°truktor novej triedy
 }

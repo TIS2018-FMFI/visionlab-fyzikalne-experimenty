@@ -13,9 +13,9 @@ public:
 	int nx = -1, ny = -1;
 	int kkx = -1, kky = -1;
 	int ide = 1;
-	long long initTime;
+	long long initTime = 0;
 	bool started = false;
-	DataSet* ds;
+	DataSet* ds = nullptr;
 	cv::Mat m, m2;
 	CMFCApplication7Dlg* win;
 	HWND h;
@@ -23,6 +23,7 @@ public:
 	map<string, double> configuration;
 public:
 	Camera(cv::Mat&, CMFCApplication7Dlg*, HWND);
+	~Camera();
 	void Start(double l, double w);
 	void End();
 	void SetBot();

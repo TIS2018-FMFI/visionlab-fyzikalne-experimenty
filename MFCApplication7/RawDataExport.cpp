@@ -9,22 +9,34 @@ using namespace std;
 #include "stdafx.h"
 #include "RawDataExport.h"
 
-RawDataExport::RawDataExport(vector<double> x, vector<double> y, double weight, double length, vector<long long> time, vector<double> values, double a) {
+RawDataExport::RawDataExport(vector<double> x, vector<double> y, double weight, double length, vector<long long> time, vector<double> values) {
 	xCoords = x;
 	yCoords = y;
 	pendulumWeight = weight;
 	ropeLength = length;
 	measuringTimes = time;
 	calculatedValues = values;
-	pixel = a;
 	createFile();
 }
 
+RawDataExport::~RawDataExport() {
+	xCoords.clear();
+	xCoords.shrink_to_fit();
+	yCoords.clear();
+	yCoords.shrink_to_fit();
+	measuringTimes.clear();
+	measuringTimes.shrink_to_fit();
+	calculatedValues.clear();
+	calculatedValues.shrink_to_fit();
+	pendulumWeight = 0;
+	ropeLength = 0;
+	pixel = 0;
+}
+
 bool RawDataExport::createFile() {
-	time_t t = time(0);   // get time now
-	//tm* now = localtime(&t);
-	//string date = to_string(now->tm_mday) + '-'+ to_string(now->tm_mon + 1) + '-' + to_string(now->tm_year + 1900); 
-	string date = "now";
+	time_t t = time(0);
+	tm* now = localtime(&t);
+	string date = to_string(now->tm_mday) + '-'+ to_string(now->tm_mon + 1) + '-' + to_string(now->tm_year + 1900); 
 	int fileCounter = 1;
 	string fileName = date + "_" + to_string(fileCounter) + ".csv";
 	bool fileAlreadyExists = fileExists(fileName);
@@ -35,11 +47,10 @@ bool RawDataExport::createFile() {
 	}
 	ofstream file;
 	file.open(fileName);
-	file << "*** pixelConst: " + to_string(pixel) + " ***\n";
-	file << "*** Dátum: "+ date + " ***\n";
-	file << "*** Konfigurácia kyvadla: ***\n";
-	file << "Váha:;" + to_string(pendulumWeight)  + ";Dåžka lanka:;" + to_string(ropeLength) +"\n";
-	file << "Ubehnutý èas:;Súradnica x:;Súradnica y:;Aktuálna výchylka:;Rýchlos;Zrýchlenie:;Uhlová rýchlos:;Uhlové zrýchlenie:;Potenciálna energia:;Kinetická energia:;Perióda:;Frekvencia:\n";
+	file << "*** DÃ¡tum: "+ date + " ***\n";
+	file << "*** KonfigurÃ¡cia kyvadla: ***\n";
+	file << "VÃ¡ha:;" + to_string(pendulumWeight)  + ";DÃ¥Å¾ka lanka:;" + to_string(ropeLength) +"\n";
+	file << "UbehnutÃ½ Ã¨as:;SÃºradnica x:;SÃºradnica y:;AktuÃ¡lna vÃ½chylka:;RÃ½chlosÂ;ZrÃ½chlenie:;UhlovÃ¡ rÃ½chlosÂ:;UhlovÃ© zrÃ½chlenie:;PotenciÃ¡lna energia:;KinetickÃ¡ energia:;PeriÃ³da:;Frekvencia:\n";
 
 	auto time = measuringTimes.begin();
 	auto x = xCoords.begin();
