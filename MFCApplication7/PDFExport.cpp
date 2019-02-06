@@ -73,30 +73,30 @@ bool PDFExport::createFile() {
 	const char *pendulumWeightChar = pW.c_str();
 
 	PDF->UseFont(underCursiveBig, 20);
-	PDF->ShowTextAt(150, 30, "Fyzikálne experimenty - Kyvadlo");
+	PDF->ShowTextAt(150, 30, "FyzikÃ¡lne experimenty - Kyvadlo");
 	PDF->UseFont(underMedium, 17);
-	PDF->ShowTextAt(10, 60, "Základné informácie:");
+	PDF->ShowTextAt(10, 60, "ZÃ¡kladnÃ© informÃ¡cie:");
 	PDF->UseFont(medium, 17);
 	PDF->ShowTextAt(10, 80, "Objekt pokusu: ");
 	PDF->UseFont(small, 13);
 	PDF->ShowTextAt(117, 83, "Kyvadlo");
 	PDF->UseFont(medium, 17);
-	PDF->ShowTextAt(10, 100, "Merané hodnoty: ");
+	PDF->ShowTextAt(10, 100, "MeranÃ© hodnoty: ");
 	PDF->UseFont(small, 13);
-	PDF->ShowTextAt(130, 103, "Rýchlost, Uhlová rýchlost, Zrýchlenie, Uhlové zrýchlenie, Uhlová výchylka,");
-	PDF->ShowTextAt(130, 123, "Maximálna výchylka, Potencionálna energia, Kinetická energia, Frekvencia, Perióda");
+	PDF->ShowTextAt(130, 103, "RÃ½chlost, UhlovÃ¡ rÃ½chlost, ZrÃ½chlenie, UhlovÃ© zrÃ½chlenie, UhlovÃ¡ vÃ½chylka,");
+	PDF->ShowTextAt(130, 123, "MaximÃ¡lna vÃ½chylka, PotencionÃ¡lna energia, KinetickÃ¡ energia, Frekvencia, PeriÃ³da");
 	PDF->UseFont(medium, 17);
 	PDF->ShowTextAt(10, 140, "Dlzka lanka:" );
 	PDF->UseFont(small, 13);
 	PDF->ShowTextAt(100, 143, ropeLengthChar);
 	PDF->ShowTextAt(130, 143, "m");
 	PDF->UseFont(medium, 17);
-	PDF->ShowTextAt(10, 160, "Váha závazia:");
+	PDF->ShowTextAt(10, 160, "VÃ¡ha zÃ¡vazia:");
 	PDF->UseFont(small, 13);
 	PDF->ShowTextAt(110, 164, pendulumWeightChar);
 	PDF->ShowTextAt(142, 164, "kg");
 	PDF->UseFont(medium, 17);
-	PDF->ShowTextAt(10, 180, "Komentár:");
+	PDF->ShowTextAt(10, 180, "KomentÃ¡r:");
 	PDF->UseFont(small, 13);
 
 	int counter = strlen(comment);
@@ -118,15 +118,15 @@ bool PDFExport::createFile() {
 
 	PDF->NewPage();
 	PDF->UseFont(underCursiveBig, 20);
-	PDF->ShowTextAt(150, 30, "Fyzikálne experimenty - Kyvadlo");
+	PDF->ShowTextAt(150, 30, "FyzikÃ¡lne experimenty - Kyvadlo");
 	PDF->UseFont(underMedium, 17);
-	PDF->ShowTextAt(10, 60, "Screenshot záznamu:");
+	PDF->ShowTextAt(10, 60, "Screenshot zÃ¡znamu:");
 	long screenshot = PDF->AddImageFromFile(photo);
 	PDF->ShowImage(screenshot, 0, 90);
 
 	PDF->NewPage();
 	PDF->UseFont(underCursiveBig, 20);
-	PDF->ShowTextAt(150, 30, "Fyzikálne experimenty - Kyvadlo");
+	PDF->ShowTextAt(150, 30, "FyzikÃ¡lne experimenty - Kyvadlo");
 	PDF->UseFont(underMedium, 17);
 	PDF->ShowTextAt(10, 60, "Screenshot grafu:");
 	long graph = PDF->AddImageFromFile(graphImage);
