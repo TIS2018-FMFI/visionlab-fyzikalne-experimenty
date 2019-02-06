@@ -47,10 +47,10 @@ bool RawDataExport::createFile() {
 	}
 	ofstream file;
 	file.open(fileName);
-	file << "*** Dátum: "+ date + " ***\n";
-	file << "*** Konfigurácia kyvadla: ***\n";
-	file << "Váha:;" + to_string(pendulumWeight)  + ";Dåžka lanka:;" + to_string(ropeLength) +"\n";
-	file << "Ubehnutý èas:;Súradnica x:;Súradnica y:;Aktuálna výchylka:;Rýchlos;Zrýchlenie:;Uhlová rýchlos:;Uhlové zrýchlenie:;Potenciálna energia:;Kinetická energia:;Perióda:;Frekvencia:\n";
+	file << "*** DÃ¡tum: "+ date + " ***\n";
+	file << "*** KonfigurÃ¡cia kyvadla: ***\n";
+	file << "VÃ¡ha:;" + to_string(pendulumWeight)  + ";DÃ¥Å¾ka lanka:;" + to_string(ropeLength) +"\n";
+	file << "UbehnutÃ½ Ã¨as:;SÃºradnica x:;SÃºradnica y:;AktuÃ¡lna vÃ½chylka:;RÃ½chlosÂ;ZrÃ½chlenie:;UhlovÃ¡ rÃ½chlosÂ:;UhlovÃ© zrÃ½chlenie:;PotenciÃ¡lna energia:;KinetickÃ¡ energia:;PeriÃ³da:;Frekvencia:\n";
 
 	auto time = measuringTimes.begin();
 	auto x = xCoords.begin();
