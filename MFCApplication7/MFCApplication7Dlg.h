@@ -20,6 +20,7 @@ class CMFCApplication7Dlg : public CDialogEx
 // Construction
 public:
 	CMFCApplication7Dlg(CWnd* pParent = nullptr);	// standard constructor
+	~CMFCApplication7Dlg();
 	HWND hPE;
 
 // Dialog Data

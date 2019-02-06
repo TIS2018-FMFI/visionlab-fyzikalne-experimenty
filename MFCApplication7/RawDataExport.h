@@ -12,8 +12,9 @@ class RawDataExport {
 	vector<long long> measuringTimes = {};
 	double pendulumWeight = 0;
 	double ropeLength = 0;
+	double pixel = 0;
 public:
-	RawDataExport(vector<double> x, vector<double> y, double weight, double length, vector<long long> time, vector<double> values);
+	RawDataExport(vector<double> x, vector<double> y, double weight, double length, vector<long long> time, vector<double> values, double a);
 	bool createFile();
 	bool fileExists(string &fileName);
 };
