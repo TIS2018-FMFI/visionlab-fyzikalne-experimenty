@@ -1,5 +1,6 @@
 #include "stdafx.h"
 #include "Camera.h"
+#include "CameraConfig.h"
 #include "MFCApplication7Dlg.h"
 
 #include <thread>
@@ -8,10 +9,6 @@ using namespace cv;
 using namespace chrono;
 
 void task(Camera* cam) {
-	cam->vc = VideoCapture(0);
-	//cam->vc.set(CV_CAP_PROP_FRAME_HEIGHT, 10);
-	//cam->vc.set(CV_CAP_PROP_FRAME_WIDTH, 10);
-	cam->LoadDefaultConfig();
 	int low_H = 284, low_S = 118, low_V = 53;
 	int high_H = 355, high_S = 253, high_V = 255;
 	int xy = 0, yy = 0, pocet = 0;
@@ -129,12 +126,12 @@ void task(Camera* cam) {
 	}
 }
 
-Camera::Camera(cv::Mat& frame, CMFCApplication7Dlg* window, HWND hPE) {
+Camera::Camera(cv::Mat& frame, CMFCApplication7Dlg* window, HWND hPE, CameraConfig config) {
 	m = frame;
 	win = window;
 	h = hPE;
+	vc = VideoCapture((int)config.configuration.at("CAM_NUMBER"));
 	std::thread t1(task, this);
-	LoadDefaultConfig();
 	t1.detach();
 }
 
@@ -153,10 +150,10 @@ Camera::~Camera() {
 	ds = nullptr;
 }
 
-void Camera::Start(double l, double w) {
+void Camera::Start(double l, double w, double g) {
 	//double firstX, double firstY, double mX, double mY, double l, double w, long long time
 	initTime = duration_cast<milliseconds> (system_clock::now().time_since_epoch()).count();
-	ds = new DataSet(cx, cy, bx, by, l, w, 0, h);
+	ds = new DataSet(cx, cy, bx, by, l, w, 0, h, g);
 	started = true;
 }
 
@@ -176,62 +173,6 @@ void Camera::SetHSV(int x, int y, int kx, int ky) {
 	kky = ky;
 }
 
-
-void Camera::LoadDefaultConfig() {
-	configuration["CAM_PEND_WEIGHT"] = 0.063;
-	configuration["CAM_ROPE_LENGTH"] = 0.53;
-	configuration["CAM_GRAVITY"] = 9.80665;
-	configuration["CAM_FRAME_HEIGHT"] = vc.get(CV_CAP_PROP_FRAME_HEIGHT);
-	configuration["CAM_FRAME_WIDTH"] = vc.get(CV_CAP_PROP_FRAME_WIDTH);
-	configuration["CAM_EXPO"] = vc.get(CV_CAP_PROP_EXPOSURE);
-	ExportConfigFile(true);
-}
-
-int Camera::ExportConfigFile(bool default) {
-	string filePath;
-	if (default == true) filePath = "config\\config_default.txt";
-	else filePath = "config\\config_export.txt";
-	ofstream configFile(filePath);
-	if (configFile.is_open())
-	{
-		map<string, double>::iterator it = configuration.begin();
-		for (pair<string, double> p : configuration) {
-			std::ostringstream strs;
-			strs << p.second;
-			std::string str = strs.str();
-			configFile << p.first + " " + str + "\n";
-		}
-		configFile.close();
-		return 0;
-	}
-	return -1;
-}
-
-template<typename T>
-std::vector<T> split(const std::string& line) {
-	std::istringstream is(line);
-	return std::vector<T>(std::istream_iterator<T>(is), std::istream_iterator<T>());
-}
-
-void Camera::ImportConfigFile(const char* path) {
-	string line;
-	ifstream configFile(path);
-	vector<string> tuple;
-	string paramName, value;
-
-	if (configFile.is_open())
-	{
-		while (getline(configFile, line))
-		{
-			tuple = split<string>(line);
-			paramName = tuple[0];
-			value = tuple[1];
-			configuration[paramName] = stod(value);
-		}
-
-		configFile.close();
-	}
-}
 
 void Camera::Save() {
 	vc >> m2;

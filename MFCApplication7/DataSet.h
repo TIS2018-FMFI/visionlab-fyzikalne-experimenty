@@ -20,7 +20,7 @@ class DataSet {
 	double pixelConst = 0;
 	HWND hPE;
 public:
-	DataSet(double firstX, double firstY, double mX, double mY, double l, double w, long long time, HWND h);
+	DataSet(double firstX, double firstY, double mX, double mY, double l, double w, long long time, HWND h, double g);
 	~DataSet();
 	void getValues(double coordX, double coordY, long long time);
 	double getCoordFromPixel(double valueX, double valueY);

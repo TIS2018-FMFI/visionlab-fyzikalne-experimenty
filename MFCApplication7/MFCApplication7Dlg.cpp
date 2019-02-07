@@ -4,6 +4,7 @@
 #include "stdafx.h"
 #include "MFCApplication7.h"
 #include "MFCApplication7Dlg.h"
+#include "CameraConfig.h"
 #include "afxdialogex.h"
 #include <iostream>
 #include "Pegrpapi.h"
@@ -218,18 +219,24 @@ BOOL CMFCApplication7Dlg::OnInitDialog()
 	PEnset(hPE, PEP_nQUICKSTYLE, PEQS_LIGHT_SHADOW);
 	PEnset(hPE, PEP_bFIXEDFONTS, TRUE);
 
-	cam = new Camera(m_imgMat, this, hPE);
+	CameraConfig config = CameraConfig();
+	cam = new Camera(m_imgMat, this, hPE, config);
+	CString cc = CString("1");
 
 	CString pend;
-	pend.Format(_T("%.5f"), cam->configuration.at("CAM_PEND_WEIGHT"));
+	pend.Format(_T("%.5f"), config.configuration.at("PEND_WEIGHT"));
 	CString rope;
-	rope.Format(_T("%.5f"), cam->configuration.at("CAM_ROPE_LENGTH"));
+	rope.Format(_T("%.5f"), config.configuration.at("ROPE_LENGTH"));
 	CString gravity;
-	gravity.Format(_T("%.5f"), cam->configuration.at("CAM_GRAVITY"));
+	gravity.Format(_T("%.5f"), config.configuration.at("GRAVITY"));
+	CString cam_number;
+	cam_number.Format(_T("Camera number: %.0f"), config.configuration.at("CAM_NUMBER"));
 
 	SetDlgItemText(IDC_EDIT3, pend);
 	SetDlgItemText(IDC_EDIT4, rope);
 	SetDlgItemText(IDC_EDIT5, gravity);
+
+	SetDlgItemText(IDC_STATIC10, cam_number);
 
 	return TRUE;  // return TRUE  unless you set the focus to a control
 }
@@ -387,7 +394,10 @@ void CMFCApplication7Dlg::OnPlayStopClickedButton()
 		CString cs2;
 		GetDlgItemText(IDC_EDIT4, cs2);
 		float dlzk = (float) _ttof(cs2);
-		cam->Start(dlzk, hmot); //TODO: Nastavit tieto hodnoty na dlzku lana a vahu zavazia v metroch a kilogramoch
+		CString cs3;
+		GetDlgItemText(IDC_EDIT5, cs3);
+		float grav = (float)_ttof(cs3);
+		cam->Start(dlzk, hmot, grav); //TODO: Nastavit tieto hodnoty na dlzku lana a vahu zavazia v metroch a kilogramoch
 	}
 	else {
 		nahrava = false;
