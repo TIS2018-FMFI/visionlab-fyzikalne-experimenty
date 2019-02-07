@@ -6,6 +6,8 @@
 
 class CMFCApplication7Dlg;
 
+class CameraConfig;
+
 class Camera {
 public:
 	int bx = -1, by = -1;
@@ -20,17 +22,13 @@ public:
 	CMFCApplication7Dlg* win;
 	HWND h;
 	cv::VideoCapture vc;
-	map<string, double> configuration;
 public:
-	Camera(cv::Mat&, CMFCApplication7Dlg*, HWND);
+	Camera(cv::Mat&, CMFCApplication7Dlg*, HWND, CameraConfig);
 	~Camera();
-	void Start(double l, double w);
+	void Start(double l, double w, double g);
 	void End();
 	void SetBot();
 	void SetHSV(int x, int y, int kx, int ky);
-	int ExportConfigFile(bool default);
-	void LoadDefaultConfig();
-	void ImportConfigFile(const char* path);
 	void Save();
 	void StopStart();
 };

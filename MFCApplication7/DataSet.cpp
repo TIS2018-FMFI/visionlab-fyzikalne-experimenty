@@ -11,16 +11,17 @@ using namespace std;
 #include "PDFExport.h"
 #include "Pegrpapi.h"
 
-const double gravitAcceleration = 9.81;
+double gravitAcceleration = 9.81;
 const double radiansToDegrees = 57.2957795;
 
-DataSet::DataSet(double firstX, double firstY, double mX, double mY, double l, double w, long long time, HWND h) {  //zavolá sa iba prvý-krát
+DataSet::DataSet(double firstX, double firstY, double mX, double mY, double l, double w, long long time, HWND h, double g) {  //zavolá sa iba prvý-krát
 	hPE = h;
 	minX = mX;
 	minY = mY;
 	times.push_back(time);
 	ropeLength = l;  //m
 	weight = w;     //kg
+	gravitAcceleration = g;
 	pixelConst = getCoordFromPixel(firstX, firstY);
 	minX *= pixelConst;
 	minY *= pixelConst;
