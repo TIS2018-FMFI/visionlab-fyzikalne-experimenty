@@ -103,7 +103,7 @@ vector<double> DataSet::calculateEachValue() {
 	else if (currentDisplacement < 0 && currentDisplacement < -1 * maxAngle) {
 		maxAngle = -1 * currentDisplacement;
 	}
-	float fData[10];
+	float fData[9];
 	fData[0] = (float)currentDisplacement;
 	fData[1] = (float)angularAcceleration;
 	fData[2] = (float)angularSpeed;
@@ -111,9 +111,8 @@ vector<double> DataSet::calculateEachValue() {
 	fData[4] = (float)potentionalEnergy;
 	fData[5] = (float)speed;
 	fData[6] = (float)acceleration;
-	fData[7] = (float)maxAngle;
-	fData[8] = (float)period;
-	fData[9] = (float)frequency;
+	fData[7] = 20.0;
+	fData[8] = -20.0;
 	PEvset(hPE, PEP_faAPPENDYDATA, fData, 1);
 
 	//PEreinitialize(hPE);

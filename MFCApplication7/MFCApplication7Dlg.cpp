@@ -159,17 +159,16 @@ BOOL CMFCApplication7Dlg::OnInitDialog()
 					0,0,0,0,0, 0,0,0,0,0, 0,0,0,0,0, 0,0,0,0,0, 0,0,0,0,0, 0,0,0,0,0, 0,0,0,0,0, 0,0,0,0,0, 0,0,0,0,0,0, 0,0,0,0,0, 0,0,0,0,0, 0,0,0,0,0,
 					0,0,0,0,0, 0,0,0,0,0, 0,0,0,0,0, 0,0,0,0,0, 0,0,0,0,0, 0,0,0,0,0, 0,0,0,0,0, 0,0,0,0,0, 0,0,0,0,0,0, 0,0,0,0,0, 0,0,0,0,0, 0,0,0,0,0,
 					0,0,0,0,0, 0,0,0,0,0, 0,0,0,0,0, 0,0,0,0,0, 0,0,0,0,0, 0,0,0,0,0, 0,0,0,0,0, 0,0,0,0,0, 0,0,0,0,0,0, 0,0,0,0,0, 0,0,0,0,0, 0,0,0,0,0,
-					0,0,0,0,0, 0,0,0,0,0, 0,0,0,0,0, 0,0,0,0,0, 0,0,0,0,0, 0,0,0,0,0, 0,0,0,0,0, 0,0,0,0,0, 0,0,0,0,0,0, 0,0,0,0,0, 0,0,0,0,0, 0,0,0,0,0,
 					0,0,0,0,0, 0,0,0,0,0, 0,0,0,0,0, 0,0,0,0,0, 0,0,0,0,0, 0,0,0,0,0, 0,0,0,0,0, 0,0,0,0,0, 0,0,0,0,0,0, 0,0,0,0,0, 0,0,0,0,0, 0,0,0,0,0, };
 
 	GetClientRect(&r);
 	hPE = PEcreate(PECONTROL_GRAPH, 0, &r, graphWin->m_hWnd, 1000);
 	PEszset(hPE, PEP_szMAINTITLE, TEXT(""));
 	PEszset(hPE, PEP_szSUBTITLE, TEXT(" "));
-	PEnset(hPE, PEP_nSUBSETS, 10);
+	PEnset(hPE, PEP_nSUBSETS, 9);
 	PEnset(hPE, PEP_nPOINTS, 60);
 
-	PEvset(hPE, PEP_faYDATA, f, 600);
+	PEvset(hPE, PEP_faYDATA, f, 540);
 
 	for (int i = 0; i < 60; i++) {
 		PEvsetcell(hPE, PEP_szaPOINTLABELS, i, TEXT(""));
@@ -184,9 +183,8 @@ BOOL CMFCApplication7Dlg::OnInitDialog()
 	PEvsetcell(hPE, PEP_szaSUBSETLABELS, 4, TEXT("Potenciálna Energia"));
 	PEvsetcell(hPE, PEP_szaSUBSETLABELS, 5, TEXT("Rýchlosť"));
 	PEvsetcell(hPE, PEP_szaSUBSETLABELS, 6, TEXT("Zrýchlenie"));
-	PEvsetcell(hPE, PEP_szaSUBSETLABELS, 7, TEXT("Maximálna výchylka"));
-	PEvsetcell(hPE, PEP_szaSUBSETLABELS, 8, TEXT("Perióda"));
-	PEvsetcell(hPE, PEP_szaSUBSETLABELS, 9, TEXT("Frekvencia"));
+	PEvsetcell(hPE, PEP_szaSUBSETLABELS, 7, TEXT(" "));
+	PEvsetcell(hPE, PEP_szaSUBSETLABELS, 8, TEXT(" "));
 
 
 	PEszset(hPE, PEP_szYAXISLABEL, TEXT("Hodnota"));
@@ -199,9 +197,9 @@ BOOL CMFCApplication7Dlg::OnInitDialog()
 	PEnset(hPE, PEP_nDATAPRECISION, 0);
 	PEnset(hPE, PEP_bLABELBOLD, TRUE);
 
-	PEnset(hPE, PEP_nCOMPARISONSUBSETS, 3);
+	//PEnset(hPE, PEP_nCOMPARISONSUBSETS, 3);
 	PEnset(hPE, PEP_nPLOTTINGMETHOD, PEGPM_LINE);
-	PEnset(hPE, PEP_nPLOTTINGMETHODII, PEGPM_POINT);
+	//PEnset(hPE, PEP_nPLOTTINGMETHODII, PEGPM_POINT);
 
 	PEnset(hPE, PEP_nGRAPHPLUSTABLE, 0);
 	PEnset(hPE, PEP_nGRADIENTBARS, 8);
