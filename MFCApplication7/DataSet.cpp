@@ -136,8 +136,16 @@ double DataSet::getCurrentDisplacement() {
 }
 
 double DataSet::getSpeed() {
-	double kineticEnergy = getKineticEnergy();
-	return sqrt(((2 * kineticEnergy) / weight));
+	/*double kineticEnergy = getKineticEnergy();
+	return sqrt(((2 * kineticEnergy) / weight));*/
+	if (x.size() < 2) {
+		return 0;
+	}
+	double dx = abs(x.end()[-2] - x.back());
+	double dy = abs(y.end()[-2] - y.back());
+	double dt = abs(times.end()[-2] - times.back());
+	double c = sqrt(pow(dx, 2) + pow(dy, 2));
+	return 1000 * c / dt;
 }
 
 double DataSet::getPotentionalEnergy() {
@@ -186,8 +194,27 @@ double DataSet::getAngularSpeed() {
 }
 
 void DataSet::exportPDFData(char *imageName, char *graphName, const char *comment) {
+	double currentDisplacement = getCurrentDisplacement();
+	double speed = getSpeed();
+	double acceleration = getAcceleration();
+	double angularSpeed = getAngularSpeed();
+	double angularAcceleration = getAngularAcceleration();
+	double potentionalEnergy = getPotentionalEnergy();
+	double kineticEnergy = getKineticEnergy();
+	double period = getPeriod();
+	double frequency = getFrequency();
+	vector<double> res;
+	res.push_back(currentDisplacement);
+	res.push_back(speed);
+	res.push_back(acceleration);
+	res.push_back(angularSpeed);
+	res.push_back(angularAcceleration);
+	res.push_back(potentionalEnergy);
+	res.push_back(kineticEnergy);
+	res.push_back(period);
+	res.push_back(frequency);
 	char *help = (char*)comment;
-	PDFExport(values, graphName, imageName, weight, ropeLength, 1, help);
+	PDFExport(res, graphName, imageName, weight, ropeLength, 1, help);
 }
 
 void DataSet::exportRawData() {

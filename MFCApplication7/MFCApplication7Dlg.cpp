@@ -363,12 +363,13 @@ void CMFCApplication7Dlg::OnBnClickedCSV()
 void CMFCApplication7Dlg::OnBnClickedPDF()
 {
 	POINT p;
-	p.x = 600;
-	p.y = 500;
+	p.x = 352;
+	p.y = 280;
 
 	LPWSTR strFull = L"graf.png";
 	char *graphName = "graf.png";
 	PEcopyjpegtofile(hPE, &p, strFull);
+	
 
 	cam->Save();
 	char *imageName = "zaznam.jpg";

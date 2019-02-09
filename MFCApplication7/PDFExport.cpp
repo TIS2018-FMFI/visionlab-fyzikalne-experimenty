@@ -1,4 +1,4 @@
-#include <iostream>
+﻿#include <iostream>
 #include <fstream>
 #include <sstream>
 #include <ctime>
@@ -57,6 +57,9 @@ bool PDFExport::createFile() {
 	PDF->ProducePDFA = false;
 	PDF->Compression = coFlate;
 
+	long img = PDF->AddImageFromFile("toto.png");
+	PDF->ShowImage(img, 0, 0);
+
 	long underCursiveBig = PDF->AddFont("Times New Roman", true, true, true, false, fcDefault);
 	long underMedium = PDF->AddFont("Times New Roman", true, true, true, false, fcDefault);
 	long medium = PDF->AddFont("Times New Roman", false, false, false, false, fcDefault);
@@ -100,38 +103,82 @@ bool PDFExport::createFile() {
 	PDF->UseFont(small, 13);
 
 	int counter = strlen(comment);
-	int helper = 183;
-	int diff = 90;
-	while (counter > 90) {
-		char *b = new char[91]{};
-		copy(comment + (diff-90), comment + diff, b);
+	int length = strlen(comment);
+	float helper = 183;
+	int diff = 75;
+	while (counter > 75) {
+		char *b = new char[76]{};
+		copy(comment + (diff-75), comment + diff, b);
 		PDF->ShowTextAt(90, helper, b);
-		counter -= 90;
-		diff += 90;
+		counter -= 75;
+		diff += 75;
 		helper += 20;
 	}
 	if (counter != 0) {
-		char *b = new char[91]{};
-		copy(comment + (diff - 90), comment + strlen(comment), b);
+		char *b = new char[76]{};
+		copy(comment + (diff - 75), comment + strlen(comment), b);
 		PDF->ShowTextAt(90, helper, b);
 	}
+	helper += 20;
 
-	PDF->NewPage();
-	PDF->UseFont(underCursiveBig, 20);
-	PDF->ShowTextAt(150, 30, "Fyzikálne experimenty - Kyvadlo");
-	PDF->UseFont(underMedium, 17);
-	PDF->ShowTextAt(10, 60, "Screenshot záznamu:");
-	long screenshot = PDF->AddImageFromFile(photo);
-	PDF->ShowImage(screenshot, 0, 90);
+	PDF->UseFont(medium, 17);
+	PDF->ShowTextAt(10, helper, "Namerané hodnoty:");
+	helper += 20;
 
-	PDF->NewPage();
-	PDF->UseFont(underCursiveBig, 20);
-	PDF->ShowTextAt(150, 30, "Fyzikálne experimenty - Kyvadlo");
-	PDF->UseFont(underMedium, 17);
-	PDF->ShowTextAt(10, 60, "Screenshot grafu:");
-	long graph = PDF->AddImageFromFile(graphImage);
-	PDF->ShowImage(graph, 0, 90);
+	long table = PDF->AddTable(9, 2, small, 10);
 
+	for (int i = 0; i < 9; i++) {
+		PDF->SetTableColumnSize(table, i, 63);
+	}
+
+	for (int i = 0; i < 2; i++) {
+		PDF->SetTableRowSize(table, i, 30);
+	}
+
+	PDF->SetRowTableFont(table, 0, underMedium);
+	PDF->SetRowTableFontSize(table, 0, 10);
+
+	for (int col = 0; col < 9; col++) {
+		for (int row = 0; row < 2; row++) {
+			if (row == 0) {
+				char *text = getText(col);
+				PDF->SetCellTableText(table, col, row, text);
+				PDF->SetCellTableTextAlign(table, col, row, taCenter);
+			}
+			else {
+				char helpo[15];
+				int res = snprintf(helpo, sizeof helpo, "%f", userInformations[col]);
+				PDF->SetCellTableText(table, col, row, helpo);
+				PDF->SetCellTableTextAlign(table, col, row, taCenter);
+			}
+		}
+	}
+	helper += 10;
+	PDF->ShowTable(table, 10, helper, 1, 1);
+
+	helper += 60;
+	if (length < 76) {
+		PDF->UseFont(underMedium, 17);
+		PDF->ShowTextAt(10, helper, "Screenshot záznamu a grafu:");
+		helper += 20;
+		long graph = PDF->AddImageFromFile(graphImage);
+		PDF->ShowImage(graph, 120, helper);
+		helper += 285;
+		long screenshot = PDF->AddImageFromFile(photo);
+		PDF->ShowImage(screenshot, 120, helper);
+	}
+	else {
+		PDF->NewPage();
+		PDF->ShowImage(img, 0, 0);
+		PDF->UseFont(underCursiveBig, 20);
+		PDF->ShowTextAt(150, 30, "Fyzikálne experimenty - Kyvadlo");
+		PDF->UseFont(underMedium, 17);
+		PDF->ShowTextAt(10, 50, "Screenshot záznamu a grafu:");
+		long graph = PDF->AddImageFromFile(graphImage);
+		PDF->ShowImage(graph, 120, 70);
+		long screenshot = PDF->AddImageFromFile(photo);
+		PDF->ShowImage(screenshot, 120, 355);
+	}
 	time_t t = time(0);
 	tm* now = localtime(&t);
 	string date = to_string(now->tm_mday) + '-' + to_string(now->tm_mon + 1) + '-' + to_string(now->tm_year + 1900);
@@ -148,6 +195,31 @@ bool PDFExport::createFile() {
 
 	CoUninitialize();
 	return true;
+}
+
+char* PDFExport::getText(int column) {
+	char* res = "Chyba";
+	switch (column) {
+		case 0: res = "Uhlová výchylka";
+			break;
+		case 1: res = "Rýchlosť";
+			break;
+		case 2: res = "Zrýchlenie";
+			break;
+		case 3: res = "Uhlová rýchlosť";
+			break;
+		case 4: res = "Uhlové zrýchlenie";
+			break;
+		case 5: res = "Potencionálna energia";
+			break;        
+		case 6: res = "Kinetická energia";
+			break;
+		case 7: res = "Perióda";
+			break;
+		case 8: res = "Frekvencia";
+			break;
+	}
+	return res;
 }
 
 bool PDFExport::fileExists(string &fileName) {

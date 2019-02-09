@@ -176,6 +176,7 @@ void Camera::SetHSV(int x, int y, int kx, int ky) {
 
 void Camera::Save() {
 	vc >> m2;
+	resize(m2, m2, Size(), 0.55, 0.51);
 	imwrite("zaznam.jpg", m2);
 }
 
