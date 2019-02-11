@@ -111,8 +111,8 @@ vector<double> DataSet::calculateEachValue() {
 	fData[4] = (float)potentionalEnergy;
 	fData[5] = (float)speed;
 	fData[6] = (float)acceleration;
-	fData[7] = 20.0;
-	fData[8] = -20.0;
+	fData[7] = 7.0;
+	fData[8] = -7.0;
 	PEvset(hPE, PEP_faAPPENDYDATA, fData, 1);
 
 	//PEreinitialize(hPE);
@@ -138,14 +138,14 @@ double DataSet::getCurrentDisplacement() {
 double DataSet::getSpeed() {
 	/*double kineticEnergy = getKineticEnergy();
 	return sqrt(((2 * kineticEnergy) / weight));*/
-	if (x.size() < 2) {
+	if (x.size() < 3) {
 		return 0;
 	}
-	double dx = abs(x.end()[-2] - x.back());
-	double dy = abs(y.end()[-2] - y.back());
-	double dt = abs(times.end()[-2] - times.back());
+	double dx = abs(x.end()[-3] - x.back());
+	double dy = abs(y.end()[-3] - y.back());
+	double dt = abs(times.end()[-3] - times.back());
 	double c = sqrt(pow(dx, 2) + pow(dy, 2));
-	return 1000 * c / dt;
+	return 3600 * c / dt;
 }
 
 double DataSet::getPotentionalEnergy() {
@@ -184,7 +184,7 @@ double DataSet::getAcceleration() {
 	double dy = abs(y.end()[-4] - y.end()[-2]);
 	double dt = abs(times.end()[-4] - times.end()[-2]);
 	double c = sqrt(pow(dx, 2) + pow(dy, 2));
-	return getSpeed() - (1000 * c / dt);
+	return getSpeed() - (3600 * c / dt);
 }
 
 double DataSet::getAngularAcceleration() {
