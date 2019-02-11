@@ -138,12 +138,12 @@ double DataSet::getCurrentDisplacement() {
 double DataSet::getSpeed() {
 	/*double kineticEnergy = getKineticEnergy();
 	return sqrt(((2 * kineticEnergy) / weight));*/
-	if (x.size() < 2) {
+	if (x.size() < 3) {
 		return 0;
 	}
-	double dx = abs(x.end()[-2] - x.back());
-	double dy = abs(y.end()[-2] - y.back());
-	double dt = abs(times.end()[-2] - times.back());
+	double dx = abs(x.end()[-3] - x.back());
+	double dy = abs(y.end()[-3] - y.back());
+	double dt = abs(times.end()[-3] - times.back());
 	double c = sqrt(pow(dx, 2) + pow(dy, 2));
 	return 1000 * c / dt;
 }
