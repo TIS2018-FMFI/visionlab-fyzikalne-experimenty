@@ -183,8 +183,8 @@ BOOL CMFCApplication7Dlg::OnInitDialog()
 	PEvsetcell(hPE, PEP_szaSUBSETLABELS, 4, TEXT("Potenciálna Energia"));
 	PEvsetcell(hPE, PEP_szaSUBSETLABELS, 5, TEXT("Rýchlosť"));
 	PEvsetcell(hPE, PEP_szaSUBSETLABELS, 6, TEXT("Zrýchlenie"));
-	PEvsetcell(hPE, PEP_szaSUBSETLABELS, 7, TEXT(" "));
-	PEvsetcell(hPE, PEP_szaSUBSETLABELS, 8, TEXT(" "));
+	PEvsetcell(hPE, PEP_szaSUBSETLABELS, 7, TEXT("Pomocná čiara"));
+	PEvsetcell(hPE, PEP_szaSUBSETLABELS, 8, TEXT("Pomocná čiara"));
 
 
 	PEszset(hPE, PEP_szYAXISLABEL, TEXT("Hodnota"));
