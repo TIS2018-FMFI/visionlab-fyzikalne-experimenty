@@ -105,14 +105,22 @@ vector<double> DataSet::calculateEachValue() {
 	}
 	float fData[9];
 	fData[0] = (float)currentDisplacement;
-	fData[1] = (float)angularAcceleration;
+	fData[1] = (float)angularAcceleration / 10000;
 	fData[2] = (float)angularSpeed;
 	fData[3] = (float)kineticEnergy;
 	fData[4] = (float)potentionalEnergy;
 	fData[5] = (float)speed;
-	fData[6] = (float)acceleration;
+	fData[6] = (float)acceleration / 10000;
 	fData[7] = 7.0;
 	fData[8] = -7.0;
+	/*
+	for (int i = 0; i < 7; i++) {
+		if (fData[i] > fData[7]) {
+			fData[7] = fData[i];
+			fData[8] = fData[i] * (-1);
+		}
+	}*/
+
 	PEvset(hPE, PEP_faAPPENDYDATA, fData, 1);
 
 	//PEreinitialize(hPE);
@@ -175,8 +183,6 @@ bool DataSet::getIfMaximalDisplacement() {
 }
 
 double DataSet::getAcceleration() {
-	/*double angle = getCurrentDisplacement();
-	return (-gravitAcceleration * sin(angle));*/
 	if (x.size() < 4) {
 		return 0;
 	}
@@ -184,12 +190,12 @@ double DataSet::getAcceleration() {
 	double dy = abs(y.end()[-4] - y.end()[-2]);
 	double dt = abs(times.end()[-4] - times.end()[-2]);
 	double c = sqrt(pow(dx, 2) + pow(dy, 2));
-	return getSpeed() - (3600 * c / dt);
+
+	double dt2 = abs(times.back() - times.end()[-2]);
+	return 3600000 * (getSpeed() - (3600 * c / dt)) / dt2;
 }
 
 double DataSet::getAngularAcceleration() {
-	/*double angle = getCurrentDisplacement();
-	return (((-gravitAcceleration * sin(angle)) / ropeLength));*/
 	return getAcceleration() / ropeLength;
 }
 
